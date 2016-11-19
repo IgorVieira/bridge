@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, webContents} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -21,6 +21,26 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   })
+
+
+  win.on('resize', () => {
+   const [width, height] = win.getContentSize()
+    for (let wc of webContents.getAllWebContents()) {
+      // Check if `wc` belongs to a webview in the `win` window.
+      if (wc.hostWebContents &&
+          wc.hostWebContents.id === win.webContents.id) {
+        wc.setSize({
+          normal: {
+            width: width,
+            height: height
+          }
+        })
+      }
+    }
+  })
+
+
+
 }
 
 // This method will be called when Electron has finished
