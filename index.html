@@ -2,24 +2,43 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Bridge</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
   </head>
-  <style>
-    *{
-      margin:0;
-      padding:0;
-  
-     }
-     webview{
-      width:100%;
-      min-height:200em;
-    }
 
-  </style>
+  
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- Your custom script here -->
+ 
+
+  
 
 
   <body>
+  <div id="search-app"></div> 
+  
+    <script type="text/babel">
+       class HelloMessage extends React.Component {
+        render() {
+          return (
+                  <div>
+                      <webview id="foo" src="https://www.github.com/"  autosize="on">
+                      </webview>
+                  </div>
+              )
+        }
+ 
+     }
+  
+      ReactDOM.render(<HelloMessage name="Jane" />, document.getElementById('search-app'))
+  
+    </script>
+      
     
-    <webview src="https://www.github.com/" guestinstance="3"></webview>
+    
+
+
+  
   </body>
 </html>
